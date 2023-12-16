@@ -1,0 +1,36 @@
+[package]
+name = "axum-lambda-template"
+description = "Sample Axum web server that can run on either AWS Lambda or regular server environment"
+version = "0.1.0"
+edition = "2021"
+default-run = "axum-lambda-template"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/bin/main.rs"
+name = "axum-lambda-template"
+
+[[bin]]
+path = "src/bin/lambda_bootstrap.rs"
+name = "bootstrap"
+
+[dependencies]
+axum = "0.6"
+dotenv = "0.15"
+env_logger = { version="0.8", default-features=false }
+lambda_http = { version="0.8", default-features=false, features=["apigw_http"] }
+tokio = { version="1", features=["macros","net","rt-multi-thread"] }
+
+[dev-dependencies]
+hyper = "0.14"
+tower = { version="0.4", features=["util"] }
+
+[profile.release]
+# Reduce deploy binary size
+opt-level = "s"
+strip = true
+lto = true
+codegen-units = 1
