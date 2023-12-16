@@ -1,12 +1,7 @@
 pub type Error = Box<(dyn std::error::Error + Send + Sync + 'static)>;
 
 /// Initialize & build Axum route
-pub async fn app<B>() -> axum::Router<(), B>
-where
-    B: axum::body::HttpBody + Send + Sized + 'static,
-    <B as axum::body::HttpBody>::Data: Send,
-    <B as axum::body::HttpBody>::Error: Into<Box<(dyn std::error::Error + Send + Sync + 'static)>>,
-{
+pub async fn app() -> axum::Router {
     use axum::routing::get;
 
     // If you need S3 client, databae connection etc. initialize here.
