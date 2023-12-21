@@ -21,7 +21,7 @@ name = "bootstrap"
 axum = "0.7"
 dotenv = "0.15"
 env_logger = { version="0.8", default-features=false }
-lambda_http = { git="https://github.com/awslabs/aws-lambda-rust-runtime.git", branch="hyper1_upgrade", default-features=false, features=["apigw_http"] }
+lambda_http = { version="0.9", default-features=false, features=["apigw_http"] }
 tokio = { version="1", features=["macros","net","rt-multi-thread"] }
 
 [dev-dependencies]
